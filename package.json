@@ -1,0 +1,31 @@
+{
+  "name": "ti-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace @tis/portal",
+    "dev:portal": "npm run dev --workspace @tis/portal",
+    "dev:ddn": "npm run dev --workspace @tis/dispecerski-dnevnik",
+    "dev:pogonski": "npm run dev --workspace @tis/pogonski-izvestaj",
+    "dev:zastita": "npm run dev --workspace @tis/rad-zastite",
+    "dev:sheme": "npm run dev --workspace @tis/sheme",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@date-io/date-fns": "^3.2.1", "@emotion/react": "^11.14.0", "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9", "@mui/material": "^7.3.9", "@mui/x-date-pickers": "^8.27.2",
+    "@tanstack/react-query": "^5.66.0", "@tanstack/react-query-devtools": "^5.66.0",
+    "date-fns": "^4.1.0", "file-saver": "^2.0.5", "react": "^19.0.0", "react-dom": "^19.0.0",
+    "react-error-boundary": "^5.0.0", "react-hook-form": "^7.54.2", "react-hot-toast": "^2.5.1",
+    "react-icons": "^5.5.0", "react-router-dom": "^7.1.5", "react-select": "^5.10.2",
+    "recharts": "^2.15.4", "styled-components": "^6.1.15", "xlsx": "file:./xlsx-0.20.3.tgz"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0", "@vitejs/plugin-react": "^4.3.4", "eslint": "^9.20.1",
+    "eslint-plugin-react": "^7.37.4", "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18", "globals": "^15.15.0", "vite": "^6.1.0"
+  }
+}

@@ -1,0 +1,1 @@
+{"name":"@tis/pogonski-izvestaj","private":true,"type":"module","scripts":{"dev":"vite --port 5102","build":"vite build","preview":"vite preview"}}
