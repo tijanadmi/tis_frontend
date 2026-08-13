@@ -4,8 +4,10 @@ import { fileURLToPath, URL } from "node:url";
 
 export function createViteConfig(base) {
   const packageRoot = new URL("../../", import.meta.url);
+  const monorepoRoot = fileURLToPath(new URL("../../../", import.meta.url));
   return defineConfig({
     base,
+    envDir: monorepoRoot,
     plugins: [react()],
     build: { outDir: "build-output", emptyOutDir: false },
     resolve: { alias: {

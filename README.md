@@ -18,11 +18,19 @@
 npm install
 ```
 
-Копирати `.env.example` у `.env` и унети адресу Go backend-а:
+Копирати коренски `.env.example` у `.env` и унети адресу Go backend-а:
 
 ```text
 VITE_BACKEND_URL=http://adresa-backenda:port
 ```
+
+На Windows/PowerShell рачунару фајл се може направити командом:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Свих пет апликација чита исти коренски `.env`; нису потребни посебни `.env` фајлови у `apps` фолдерима. Стварни `.env` је наведен у `.gitignore` и не шаље се на GitHub.
 
 Backend мора да дозволи cookie аутентификацију (`credentials: include`) са frontend origin-а.
 
