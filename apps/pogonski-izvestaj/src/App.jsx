@@ -7,11 +7,12 @@ import DashboardPI from "./pages/DashboardPI";
 import MonthT1 from "./pages/MonthT1"; import MonthT2 from "./pages/MonthT2"; import MonthT3 from "./pages/MonthT3"; import MonthT4 from "./pages/MonthT4";
 import DayT1 from "./pages/DayT1"; import DayT2 from "./pages/DayT2"; import DayT3 from "./pages/DayT3"; import DayT4 from "./pages/DayT4";
 import PIT1 from "./pages/PIT1"; import PIT2 from "./pages/PIT2"; import PIT3 from "./pages/PIT3"; import PIT4 from "./pages/PIT4";
+import { MdCalendarMonth, MdToday, MdSyncProblem } from "react-icons/md";
 
 const navigation=[
-  {to:"/",label:"Месечни извештај",end:true},
-  {to:"/dnevni",label:"Дневни извештај"},
-  {to:"/pogonski",label:"Погонски извештај"}
+  {to:"/",label:"Месечни извештај",icon:<MdCalendarMonth />,end:true},
+  {to:"/dnevni",label:"Дневни извештај",icon:<MdToday />},
+  {to:"/pogonski",label:"Погонски извештај",icon:<MdSyncProblem />}
 ];
 export default function App(){return <BrowserRouter basename="/pogonski-izvestaj"><Routes>
   <Route element={<ProtectedRoute><WorkspaceLayout navigation={navigation}/></ProtectedRoute>}>

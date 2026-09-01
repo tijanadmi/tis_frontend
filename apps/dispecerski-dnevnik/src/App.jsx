@@ -5,9 +5,10 @@ import DDNOpenShifts from "./pages/DDNOpenShifts";
 import DDNClosedShifts from "./pages/DDNClosedShifts";
 import DDNInterruptionOfDeliveryK from "./pages/DDNInterruptionOfDeliveryK";
 import DDNInterruptionOfDeliveryP from "./pages/DDNInterruptionOfDeliveryP";
+import { MdEventAvailable, MdEventBusy, MdPersonOff, MdPowerOff } from "react-icons/md";
 const navigation = [
-  {to:"/",label:"Преглед отворених смена",end:true}, {to:"/zatvorene-smene",label:"Преглед затворених смена"},
-  {to:"/prekidi-korisnika",label:"Прекиди корисника"}, {to:"/prekidi-proizvodnje",label:"Прекиди производње"}
+  {to:"/",label:"Преглед отворених смена",icon:<MdEventAvailable />,end:true}, {to:"/zatvorene-smene",label:"Преглед затворених смена",icon:<MdEventBusy />},
+  {to:"/prekidi-korisnika",label:"Прекиди корисника",icon:<MdPersonOff />}, {to:"/prekidi-proizvodnje",label:"Прекиди производње",icon:<MdPowerOff />}
 ];
 export default function App() { return <BrowserRouter basename="/dispecerski-dnevnik"><Routes>
   <Route element={<ProtectedRoute><WorkspaceLayout navigation={navigation} /></ProtectedRoute>}>

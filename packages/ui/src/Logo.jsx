@@ -13,7 +13,8 @@ const Img = styled.img`
 function Logo() {
   const { isDarkMode } = useDarkMode();
 
-  const src = isDarkMode ? "/tis_black4.png" : "/tis_white4.png";
+  const logoName = isDarkMode ? "tis_black4.png" : "tis_white4.png";
+  const src = `${import.meta.env.BASE_URL}${logoName}`;
 
   return (
     <StyledLogo>
