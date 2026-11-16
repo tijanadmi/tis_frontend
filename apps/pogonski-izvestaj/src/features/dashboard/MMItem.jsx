@@ -22,6 +22,29 @@ const StyledTodayItem = styled.li`
   &:first-child {
     border-top: 1px solid var(--color-grey-100);
   }
+
+  @media (max-width: 560px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.8rem 1.2rem;
+    padding: 1.2rem 0;
+
+    & > :nth-child(1) {
+      justify-self: start;
+      max-width: 100%;
+    }
+
+    & > :nth-child(2) {
+      justify-self: end;
+    }
+
+    & > :nth-child(3),
+    & > :nth-child(4) {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 `;
 
 function MMItem({ naziv, tacka, year, month }) {
