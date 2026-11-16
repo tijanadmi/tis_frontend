@@ -2,14 +2,35 @@ import DashboardPILayout from "../features/dashboardPI/DashboardPILayout";
 import DashboardDayOperation from "../features/dashboardDay/DashboardDayOperation";
 import Heading from "@tis/ui/Heading";
 import Row from "@tis/ui/Row";
+import styled from "styled-components";
+
+const HeaderRow = styled(Row)`
+  gap: 1.6rem 2.4rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    & > div:last-child {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    & > div:last-child > * {
+      flex: 1 1 16rem;
+      min-width: 0;
+    }
+  }
+`;
 
 function DashboardPI() {
   return (
     <>
-      <Row type="horizontal">
+      <HeaderRow type="horizontal">
         <Heading as="h1">Погонски извештај</Heading>
         <DashboardDayOperation />
-      </Row>
+      </HeaderRow>
       <DashboardPILayout />
     </>
   );
