@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Heading from "@tis/ui/Heading";
 import {
   Cell,
-  Legend,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -29,42 +28,51 @@ const ChartBox = styled.div`
   }
 `;
 
-// const startDataLight = [
-//   { duration: "APU Uspešno", value: 0, color: "#dc2626" },      // jarka crvena
-//   { duration: "Prol. kvar", value: 0, color: "#f97316" },       // narandžasta
-//   { duration: "Uzas .kvar", value: 0, color: "#eab308" },       // žuta
-//   { duration: "Ispad", value: 0, color: "#22c55e" },            // svetlozelena
-//   { duration: "Isp. pod  rukom", value: 0, color: "#0ea5e9" },  // svetlo plava
-//   { duration: "APU Neuspešno", value: 0, color: "#06b6d4" },    // cyan
-//   { duration: "Smetnja", value: 0, color: "#3b82f6" },          // plava
-//   { duration: "Potencijalni kvar", value: 0, color: "#9333ea" },// ljubičasta
-//   { duration: "Konzum u mraku", value: 0, color: "#e11d48" },   // tamnocrvena
-//   { duration: "Traj. kvar", value: 0, color: "#7c3aed" },       // indigo
-//   { duration: "Ostalo", value: 0, color: "#16a34a" },           // zelena
-//   { duration: "Prekid isporuke", value: 0, color: "#facc15" },  // svetložuta
-// ];
+const ChartContent = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  align-items: center;
+  gap: 1.6rem 2.4rem;
+  min-width: 0;
+`;
 
+const LegendList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-content: center;
+  gap: 0.8rem 1.6rem;
+  min-width: 0;
+`;
 
-// const startDataDark = [
-//   { duration: "APU Uspešno", value: 0, color: "#991b1b" },      // tamna crvena
-//   { duration: "Prol. kvar", value: 0, color: "#c2410c" },       // narandžasta
-//   { duration: "Uzas .kvar", value: 0, color: "#a16207" },       // tamna žuta
-//   { duration: "Ispad", value: 0, color: "#15803d" },            // tamno zelena
-//   { duration: "Isp. pod  rukom", value: 0, color: "#0369a1" },  // tamna plava
-//   { duration: "APU Neuspešno", value: 0, color: "#0e7490" },    // tamni cyan
-//   { duration: "Smetnja", value: 0, color: "#1d4ed8" },          // plava
-//   { duration: "Potencijalni kvar", value: 0, color: "#6b21a8" },// tamna ljubičasta
-//   { duration: "Konzum u mraku", value: 0, color: "#9d174d" },   // tamna bordo
-//   { duration: "Traj. kvar", value: 0, color: "#5b21b6" },       // tamni indigo
-//   { duration: "Ostalo", value: 0, color: "#166534" },           // tamnozelena
-//   { duration: "Prekid isporuke", value: 0, color: "#ca8a04" },  // zlatna
-// ];
+const LegendItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  min-width: 0;
+  color: ${(props) => props.$color};
+  font-size: 1.4rem;
+  line-height: 1.35;
+
+  &::before {
+    content: "";
+    width: 1.2rem;
+    height: 1.2rem;
+    flex: 0 0 1.2rem;
+    margin-top: 0.35rem;
+    border-radius: 50%;
+    background-color: ${(props) => props.$color};
+  }
+
+  span {
+    overflow-wrap: anywhere;
+  }
+`;
 
 const startDataLight = [
   {
     duration: "APU Uspešno",
     value: 0,
-    color: "#ef4444",
+    color: "#84cc16",
   },
   {
     duration: "Prol. kvar",
@@ -79,7 +87,7 @@ const startDataLight = [
   {
     duration: "Ispad",
     value: 0,
-    color: "#84cc16",
+    color: "#ef4444",
   },
   {
     duration: "Isp. pod  rukom",
@@ -127,7 +135,7 @@ const startDataDark = [
   {
     duration: "APU Uspešno",
     value: 0,
-    color: "#b91c1c",
+    color: "#4d7c0f",
   },
   {
     duration: "Prol. kvar",
@@ -142,7 +150,7 @@ const startDataDark = [
   {
     duration: "Ispad",
     value: 0,
-    color: "#4d7c0f",
+    color: "#b91c1c",
   },
   {
     duration: "Isp. pod  rukom",
@@ -228,37 +236,38 @@ function IspadiPoVrstiDogChart({ dogadjaji }) {
   return (
     <ChartBox>
       <Heading as="h2">Испади/кварови по врсти догађаја</Heading>
-      <ResponsiveContainer width="100%" height={240}>
-        <PieChart>
-          <Pie
-            data={data}
-            nameKey="duration"
-            dataKey="value"
-            innerRadius={70}
-            outerRadius={100}
-            cx="40%"
-            cy="50%"
-            paddingAngle={3}
-          >
-            {data.map((entry) => (
-              <Cell
-                fill={entry.color}
-                stroke={entry.color}
-                key={entry.duration}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend
-            verticalAlign="middle"
-            align="right"
-            width="30%"
-            layout="vertical"
-            iconSize={15}
-            iconType="circle"
-          />
-        </PieChart>
-      </ResponsiveContainer>
+      <ChartContent>
+        <ResponsiveContainer width="100%" height={240}>
+          <PieChart>
+            <Pie
+              data={data}
+              nameKey="duration"
+              dataKey="value"
+              innerRadius={70}
+              outerRadius={100}
+              cx="50%"
+              cy="50%"
+              paddingAngle={3}
+            >
+              {data.map((entry) => (
+                <Cell
+                  fill={entry.color}
+                  stroke={entry.color}
+                  key={entry.duration}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+        <LegendList aria-label="Легенда дијаграма">
+          {data.map((entry) => (
+            <LegendItem key={entry.duration} $color={entry.color}>
+              <span>{entry.duration}</span>
+            </LegendItem>
+          ))}
+        </LegendList>
+      </ChartContent>
     </ChartBox>
   );
 }

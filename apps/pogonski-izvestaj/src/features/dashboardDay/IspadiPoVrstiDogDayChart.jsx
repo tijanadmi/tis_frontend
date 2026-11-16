@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Heading from "@tis/ui/Heading";
 import {
   Cell,
-  Legend,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -29,11 +28,49 @@ const ChartBox = styled.div`
   }
 `;
 
+const ChartContent = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  align-items: center;
+  gap: 1.6rem 2.4rem;
+  min-width: 0;
+`;
+
+const LegendList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-content: center;
+  gap: 0.8rem 1.6rem;
+  min-width: 0;
+`;
+
+const LegendItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  min-width: 0;
+  color: ${(props) => props.$color};
+  font-size: 1.4rem;
+  line-height: 1.35;
+
+  &::before {
+    content: "";
+    width: 1.2rem;
+    height: 1.2rem;
+    flex: 0 0 1.2rem;
+    margin-top: 0.35rem;
+    border-radius: 50%;
+    background-color: ${(props) => props.$color};
+  }
+
+  span { overflow-wrap: anywhere; }
+`;
+
 const startDataLight = [
   {
     duration: "APU Uspešno",
     value: 0,
-    color: "#ef4444",
+    color: "#84cc16",
   },
   {
     duration: "Prol. kvar",
@@ -48,7 +85,7 @@ const startDataLight = [
   {
     duration: "Ispad",
     value: 0,
-    color: "#84cc16",
+    color: "#ef4444",
   },
   {
     duration: "Isp. pod  rukom",
@@ -96,7 +133,7 @@ const startDataDark = [
   {
     duration: "APU Uspešno",
     value: 0,
-    color: "#b91c1c",
+    color: "#4d7c0f",
   },
   {
     duration: "Prol. kvar",
@@ -111,7 +148,7 @@ const startDataDark = [
   {
     duration: "Ispad",
     value: 0,
-    color: "#4d7c0f",
+    color: "#b91c1c",
   },
   {
     duration: "Isp. pod  rukom",
@@ -199,37 +236,34 @@ function IspadiPoVrstiDogDayChart({ dogadjaji }) {
   return hasDog ? (
     <ChartBox>
       <Heading as="h2">Испади/кварови по врсти догађаја</Heading>
-      <ResponsiveContainer width="100%" height={240}>
-        <PieChart>
-          <Pie
-            data={data}
-            nameKey="duration"
-            dataKey="value"
-            innerRadius={70}
-            outerRadius={100}
-            cx="40%"
-            cy="50%"
-            paddingAngle={3}
-          >
-            {data.map((entry) => (
-              <Cell
-                fill={entry.color}
-                stroke={entry.color}
-                key={entry.duration}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend
-            verticalAlign="middle"
-            align="right"
-            width="30%"
-            layout="vertical"
-            iconSize={15}
-            iconType="circle"
-          />
-        </PieChart>
-      </ResponsiveContainer>
+      <ChartContent>
+        <ResponsiveContainer width="100%" height={240}>
+          <PieChart>
+            <Pie
+              data={data}
+              nameKey="duration"
+              dataKey="value"
+              innerRadius={70}
+              outerRadius={100}
+              cx="50%"
+              cy="50%"
+              paddingAngle={3}
+            >
+              {data.map((entry) => (
+                <Cell fill={entry.color} stroke={entry.color} key={entry.duration} />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+        <LegendList aria-label="Легенда дијаграма">
+          {data.map((entry) => (
+            <LegendItem key={entry.duration} $color={entry.color}>
+              <span>{entry.duration}</span>
+            </LegendItem>
+          ))}
+        </LegendList>
+      </ChartContent>
     </ChartBox>
   ) : (
     <ChartBox>
