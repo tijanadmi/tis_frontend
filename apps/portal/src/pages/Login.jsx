@@ -32,21 +32,15 @@ const BrandPanel = styled.section`
 const BrandContent = styled.div`position: relative; z-index: 1; max-width: 62rem;`;
 
 const BrandMark = styled.div`
-  display: flex; align-items: center; gap: 1.6rem; margin-bottom: 4.8rem;
-  img { width: 7.2rem; height: 7.2rem; border-radius: 1.4rem; object-fit: cover; }
-  span { display: block; font-size: 1.3rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #cbd5e1; }
-  strong { display: block; font-size: 2.2rem; letter-spacing: .03em; }
-  @media (max-width: 560px) { margin-bottom: 2.4rem; }
-`;
-
-const Title = styled.h1`
-  max-width: 58rem; margin-bottom: 2rem; font-size: clamp(3.4rem, 4.2vw, 5.8rem);
-  line-height: 1.12; letter-spacing: -.035em; color: #fff;
-`;
-
-const Intro = styled.p`
-  max-width: 56rem; font-size: 1.7rem; line-height: 1.8; color: #cbd5e1;
-  @media (max-width: 560px) { display: none; }
+  display: flex; align-items: center; gap: 2rem; margin-bottom: 4rem;
+  img { width: 9.2rem; height: 9.2rem; border-radius: 1.8rem; object-fit: cover; }
+  span { display: block; margin-bottom: .4rem; font-size: 1.5rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #cbd5e1; }
+  strong { display: block; font-size: clamp(2.8rem, 3vw, 4rem); letter-spacing: -.02em; color: #fff; }
+  @media (max-width: 560px) {
+    margin-bottom: 2.4rem;
+    img { width: 7.2rem; height: 7.2rem; }
+    span { font-size: 1.2rem; }
+  }
 `;
 
 const Capabilities = styled.ul`
@@ -79,8 +73,6 @@ export default function Login() {
             <img src="/tis_black4.png" alt="ТИС" />
             <div><span>Технички информациони систем</span><strong>ТИС портал</strong></div>
           </BrandMark>
-          <Title>Подаци и процеси на једном месту.</Title>
-          <Intro>Јединствен приступ оперативним извештајима, диспечерском дневнику, раду заштите и техничким шемама.</Intro>
           <Capabilities aria-label="Могућности система">
             <li><HiOutlineChartBar /> Оперативни извештаји</li>
             <li><HiOutlineSquares2X2 /> Централизован приступ</li>
