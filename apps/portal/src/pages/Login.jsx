@@ -33,13 +33,35 @@ const BrandContent = styled.div`position: relative; z-index: 1; max-width: 62rem
 
 const BrandMark = styled.div`
   display: flex; align-items: center; gap: 2rem; margin-bottom: 4rem;
-  img { width: 9.2rem; height: 9.2rem; border-radius: 1.8rem; object-fit: cover; }
   span { display: block; margin-bottom: .4rem; font-size: 1.5rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #cbd5e1; }
   strong { display: block; font-size: clamp(2.8rem, 3vw, 4rem); letter-spacing: -.02em; color: #fff; }
   @media (max-width: 560px) {
     margin-bottom: 2.4rem;
-    img { width: 7.2rem; height: 7.2rem; }
     span { font-size: 1.2rem; }
+  }
+`;
+
+const BrandIcon = styled.div`
+  width: 9.2rem;
+  height: 9.2rem;
+  flex: 0 0 9.2rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.8rem;
+  color: #fff;
+  background: linear-gradient(145deg, #2563eb, #4338ca);
+  box-shadow: 0 1.6rem 3.2rem rgba(15, 23, 42, 0.26);
+  font-size: 2.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  @media (max-width: 560px) {
+    width: 7.2rem;
+    height: 7.2rem;
+    flex-basis: 7.2rem;
+    border-radius: 1.4rem;
+    font-size: 2.2rem;
   }
 `;
 
@@ -70,7 +92,7 @@ export default function Login() {
       <BrandPanel>
         <BrandContent>
           <BrandMark>
-            <img src="/tis_black4.png" alt="ТИС" />
+            <BrandIcon role="img" aria-label="ТИС">ТИС</BrandIcon>
             <div><span>Технички информациони систем</span><strong>ТИС портал</strong></div>
           </BrandMark>
           <Capabilities aria-label="Могућности система">
