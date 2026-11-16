@@ -18,6 +18,15 @@ const StyledDashboardLayout = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
   gap: 2.4rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: minmax(0, 1fr);
+
+    & > * {
+      grid-column: 1 / -1;
+      min-width: 0;
+    }
+  }
 `;
 
 function DashboardDayLayout() {
